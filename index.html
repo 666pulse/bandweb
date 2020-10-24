@@ -90,7 +90,16 @@
             <div class="indicator">
               <span>Block Height</span>
             </div>
-            <div class="data-text">173,779</div>
+            <div class="data-text _blkheight"></div>
+          </div>
+        </div>
+
+        <div class="flex-item">
+          <div class="section">
+            <div class="indicator">
+              <span>Last Block Time</span>
+            </div>
+            <div class="data-text _blktime"></div>
           </div>
         </div>
 
@@ -99,7 +108,7 @@
             <div class="indicator">
               <span>Oracle Status</span>
             </div>
-            <div class="data-text">173,779</div>
+            <div class="data-text" _oraclestatus></div>
           </div>
         </div>
 
@@ -108,7 +117,7 @@
             <div class="indicator">
               <span>Voting Power</span>
             </div>
-            <div class="data-text">173,779</div>
+            <div class="data-text _votingpower"></div>
           </div>
         </div>
 
@@ -117,18 +126,40 @@
             <div class="indicator">
               <span>Commision</span>
             </div>
-            <div class="data-text">173,779</div>
+            <div class="data-text _commision"></div>
           </div>
         </div>
       </div>
 
     </div>
 
-    <div class="grid-container"></div>
   </div>
 
   <script>
+    $(document).ready(function() {
+      setInterval(function() {
+        $.post("http://127.0.0.1:26657/status", function(data) {
+          var result = data["result"];
 
+          var latest_block_height = result['sync_info']['latest_block_height'];
+          var latest_block_time = result['sync_info']['latest_block_time'];
+          var voting_power = result["validator_info"]["voting_power"];
+
+          $("._blkheight").html(latest_block_height);
+          $("._blktime").html(latest_block_time);
+          $("._votingpower").html(voting_power);
+        });
+      }, 5000);
+
+      //////////////////
+      setInterval(function() {
+        $.get("http://localhost:1317/oracle/validators/bandvaloper170umrcfkg87xmt2wqzjldpdzxgd2tj7ayeuqxp", function(data) {
+          var orace_status = data['result']['is_active'];
+          $("._oraclestatus").html(orace_status);
+        });
+
+      }, 10000);
+    })
   </script>
 </body>
 
