@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Band666</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+</head>
+
+<style>
+  body {
+    padding: 0;
+  }
+
+  .brand {
+    font-size: 1.7em;
+    color: #FFFFFF;
+  }
+
+  .navbar {}
+
+  .app {
+    width: 100%;
+    position: absolute;
+    top: 70px;
+  }
+
+  .wall {
+    width: 100%;
+    height: 10px;
+  }
+
+  #overview {
+    width: 100%;
+    margin-left: 10px;
+  }
+
+  .flex-container {
+    display: flex;
+    width: 100%;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .flex-item {
+    height: 100px;
+    width: 25%;
+    margin-right: 10px;
+  }
+
+  .flex-item .section {
+    background-color: rgba(240, 246, 251);
+    padding: 30px;
+  }
+
+  .flex-item .data-text {
+    font-size: 1.5rem;
+  }
+
+  .flex-item .indicator {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: rgba(160, 174, 192);
+  }
+</style>
+
+<body>
+  <nav class="ui top fixed menu" style="height:60px; background-color: #1A4FC9;">
+    <div class="ui container">
+      <div class="header item">
+        <span class="brand">Band666</span>
+      </div>
+      <div class="ui pointing dropdown link item">
+      </div>
+    </div>
+  </nav>
+
+  <div class="ui container app">
+    <div class='wall'></div>
+
+    <div id="overview">
+      <div class="flex-container">
+        <div class="flex-item">
+          <div class="section">
+            <div class="indicator">
+              <span>Block Height</span>
+            </div>
+            <div class="data-text">173,779</div>
+          </div>
+        </div>
+
+        <div class="flex-item">
+          <div class="section">
+            <div class="indicator">
+              <span>Oracle Status</span>
+            </div>
+            <div class="data-text">173,779</div>
+          </div>
+        </div>
+
+        <div class="flex-item">
+          <div class="section">
+            <div class="indicator">
+              <span>Voting Power</span>
+            </div>
+            <div class="data-text">173,779</div>
+          </div>
+        </div>
+
+        <div class="flex-item">
+          <div class="section">
+            <div class="indicator">
+              <span>Commision</span>
+            </div>
+            <div class="data-text">173,779</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="grid-container"></div>
+  </div>
+
+  <script>
+
+  </script>
+</body>
+
+</html>
