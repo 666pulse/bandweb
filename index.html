@@ -136,27 +136,41 @@
   </div>
 
   <script>
+    function getStatus() {
+      $.post("/rpc/status", function(data) {
+        var result = data["result"];
+
+        var latest_block_height = result['sync_info']['latest_block_height'];
+        var _latest_block_time = result['sync_info']['latest_block_time'];
+        var voting_power = result["validator_info"]["voting_power"];
+
+        var latest_block_time = _latest_block_time.substr(0, 19).replace("T", " ");
+        $("._blkheight").html(latest_block_height);
+        $("._blktime").html(latest_block_time);
+        $("._votingpower").html(voting_power);
+      });
+    }
+
+    function getOracleStatus() {
+
+      $.get("/rest/oracle/validators/bandvaloper170umrcfkg87xmt2wqzjldpdzxgd2tj7ayeuqxp", function(data) {
+        var orace_status = data['result']['is_active'];
+        $("._oraclestatus").html(orace_status);
+      });
+    }
+
     $(document).ready(function() {
+      getStatus();
+      getOracleStatus();
+
       setInterval(function() {
-        $.post("http://127.0.0.1:26657/status", function(data) {
-          var result = data["result"];
+        getOracleStatus()
 
-          var latest_block_height = result['sync_info']['latest_block_height'];
-          var latest_block_time = result['sync_info']['latest_block_time'];
-          var voting_power = result["validator_info"]["voting_power"];
-
-          $("._blkheight").html(latest_block_height);
-          $("._blktime").html(latest_block_time);
-          $("._votingpower").html(voting_power);
-        });
       }, 5000);
 
       //////////////////
       setInterval(function() {
-        $.get("http://localhost:1317/oracle/validators/bandvaloper170umrcfkg87xmt2wqzjldpdzxgd2tj7ayeuqxp", function(data) {
-          var orace_status = data['result']['is_active'];
-          $("._oraclestatus").html(orace_status);
-        });
+        getStatus();
 
       }, 10000);
     })
